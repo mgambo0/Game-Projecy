@@ -1,0 +1,61 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class HorizontalMovementIV : MonoBehaviour
+{
+    bool collideWithMe;
+    float positionX;
+    float positionY;
+    float positionZ;
+    float resetX;
+    float resetY;
+    float resetZ;
+    float enemySpeedOne;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        collideWithMe = false;
+        positionX = 2f;
+        positionY = 0;
+        positionZ = 0;
+
+        resetX = 0;
+        resetY = 0;
+        resetZ = 0;
+
+
+        enemySpeedOne = 5f;
+    }
+
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (collideWithMe == true)
+        {
+            transform.position += new Vector3(positionX * Time.deltaTime * enemySpeedOne, positionY, positionZ);
+        }
+        if (collideWithMe == false)
+        {
+            transform.position += new Vector3(-positionX * Time.deltaTime * enemySpeedOne, positionY, positionZ);
+        }
+    }
+
+
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Wood4" && collideWithMe == true)
+        {
+            collideWithMe = false;
+            transform.position += new Vector3(resetX, resetY, resetZ);
+        }
+        if (other.gameObject.tag == "Wood3" && collideWithMe == false)
+        {
+            collideWithMe = true;
+            transform.position += new Vector3(resetX, resetY, resetZ);
+        }
+    }
+}
