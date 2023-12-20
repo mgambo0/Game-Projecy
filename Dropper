@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Dropper : MonoBehaviour
+{
+    MeshRenderer renderer;
+    Rigidbody rigidBuddy;
+    [SerializeField] float timetoWait = 60f;
+    // This will begin at the first frame possible.
+    void Start()
+    {
+        renderer = GetComponent<MeshRenderer>();
+        rigidBuddy = GetComponent<Rigidbody>();
+        renderer.enabled = false;
+        rigidBuddy.useGravity = false;
+    }
+
+    // This will happened after some time has passed.
+    void Update()
+    {
+        if (Time.time > timetoWait)
+        {
+            Debug.Log("A minute has passed; some logs have fallen off!");
+            renderer.enabled = true;
+            rigidBuddy.useGravity = true;
+
+        }
+    }
+}
