@@ -1,0 +1,19 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneMangement;
+
+public class Victory : MonoBehaviour
+{
+    //Will restart the entire game.
+    public void RestartButton()
+    {
+        SceneManager.LoadScene("Frog");
+    }
+
+    //Will take the player back to the title screen.
+    public void ExitButton()
+    {
+        SceneManager.LoadScene("TitleScreen");
+    }
+}
