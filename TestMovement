@@ -1,0 +1,60 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class TestMovement : MonoBehaviour
+{
+    //This is where I store my global variables.
+    //I can set variables here too.
+
+    // Start is called before the first frame update
+    //This is where I have the option to set variables.
+    //Also if I want code to be executed once; this is where I place it.
+
+    bool isitColliding;
+    void Start()
+    {
+        isitColliding = false;
+    }
+
+    //This is where I would like code to be per frame (Happen again and again).
+    void Update()
+    {
+
+        if (isitColliding == false)
+        {
+            transform.position += new Vector3(0, 0, 2 * Time.deltaTime);
+
+        }
+
+        if (isitColliding == true)
+        {
+
+            transform.position += new Vector3(0, 0, -2 * Time.deltaTime);
+
+        }
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+
+        if (other.gameObject.tag == "Wood1")
+        {
+            isitColliding = true;
+            transform.position += new Vector3(0, 0, 0);
+            // transform.Translate(0,0, -4);
+
+
+        }
+
+        if (other.gameObject.tag == "Wood2" && isitColliding == true)
+        {
+            isitColliding = false;
+            transform.position += new Vector3(0, 0, 0);
+            // transform.Translate(0,0, -4);
+
+
+        }
+    }
+
+}
